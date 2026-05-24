@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zeesoft – IT & Software Development Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ─────────────────────────────────────────
+   DESIGN TOKENS  –  White + Sky Blue theme
+───────────────────────────────────────── */
+:root{
+  --bg:#f5faff;
+  --bg2:#eaf4ff;
+  --surface:#ffffff;
+  --surface2:#ddeeff;
+  --sky:#0ea5e9;
+  --sky-deep:#0284c7;
+  --sky-pale:#bae6fd;
+  --sky-mid:#38bdf8;
+  --teal:#06b6d4;
+  --text:#0a1929;
+  --muted:#5b7a9c;
+  --border:rgba(14,165,233,.14);
+  --shadow:rgba(14,165,233,.13);
+  --radius:14px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-size:16px;line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* subtle grid pattern */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;z-index:0;
+}
+
+/* ══════════ NAV ══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 6%;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 2px 28px var(--shadow);
+  animation:slideDown .55s ease both;
+}
+@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+
+.logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;
+  color:var(--sky-deep);letter-spacing:-.5px;
+}
+.logo em{font-style:normal;color:var(--teal)}
+
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:.875rem;
+  font-weight:600;letter-spacing:.02em;transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:2px;background:var(--sky);border-radius:2px;
+  transform:scaleX(0);transition:transform .25s;
+}
+.nav-links a:hover{color:var(--sky-deep)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+.nav-cta{
+  background:linear-gradient(135deg,var(--sky-deep),var(--sky));
+  color:#fff;border:none;padding:.6rem 1.5rem;
+  border-radius:40px;font-family:'Outfit',sans-serif;
+  font-weight:600;font-size:.875rem;cursor:pointer;
+  box-shadow:0 4px 18px rgba(14,165,233,.32);
+  transition:all .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(14,165,233,.45)}
+
+/* ══════════ HERO ══════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:8rem 6% 5rem;
+  position:relative;overflow:hidden;z-index:1;
+}
+
+.orb{
+  position:absolute;border-radius:50%;
+  filter:blur(90px);pointer-events:none;
+  animation:orbFloat ease-in-out infinite alternate;
+}
+.orb1{width:620px;height:620px;background:rgba(14,165,233,.1);top:-140px;left:-160px;animation-duration:9s}
+.orb2{width:480px;height:480px;background:rgba(6,182,212,.09);bottom:-80px;right:-120px;animation-duration:11s;animation-delay:-4s}
+.orb3{width:360px;height:360px;background:rgba(56,189,248,.07);top:42%;left:50%;transform:translateX(-50%);animation-duration:7s;animation-delay:-2s}
+@keyframes orbFloat{from{transform:translate(0,0)}to{transform:translate(22px,32px)}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:rgba(14,165,233,.09);border:1.5px solid rgba(14,165,233,.22);
+  color:var(--sky-deep);font-size:.78rem;font-weight:700;
+  padding:.38rem 1.1rem;border-radius:999px;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:1.8rem;
+  animation:fadeUp .8s .2s ease both;
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--sky);animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.5)}}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.6rem,6.5vw,5.4rem);
+  font-weight:800;line-height:1.03;letter-spacing:-2.5px;
+  animation:fadeUp .8s .35s ease both;
+}
+.hero h1 .grad{
+  background:linear-gradient(130deg,var(--sky-deep) 0%,var(--sky) 45%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  max-width:600px;color:var(--muted);font-size:1.1rem;
+  margin:1.5rem auto 0;font-weight:400;
+  animation:fadeUp .8s .5s ease both;
+}
+
+.hero-actions{
+  display:flex;gap:1rem;margin-top:2.8rem;
+  flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s .65s ease both;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--sky-deep),var(--sky));
+  color:#fff;border:none;padding:.9rem 2.2rem;
+  border-radius:50px;font-family:'Outfit',sans-serif;
+  font-weight:700;font-size:1rem;cursor:pointer;
+  box-shadow:0 6px 26px rgba(14,165,233,.3);
+  transition:all .25s;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(14,165,233,.42)}
+
+.btn-ghost{
+  background:#fff;color:var(--sky-deep);
+  border:2px solid var(--border);padding:.88rem 2.2rem;
+  border-radius:50px;font-family:'Outfit',sans-serif;
+  font-weight:600;font-size:1rem;cursor:pointer;
+  box-shadow:0 2px 12px var(--shadow);transition:all .25s;
+}
+.btn-ghost:hover{border-color:var(--sky);transform:translateY(-2px);background:rgba(14,165,233,.05)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* ══════════ STATS ══════════ */
+.stats-bar{
+  display:flex;flex-wrap:wrap;
+  background:#fff;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  box-shadow:0 4px 28px var(--shadow);
+  position:relative;z-index:1;
+}
+.stat{
+  flex:1;min-width:160px;padding:2rem;text-align:center;
+  border-right:1px solid var(--border);
+  opacity:0;animation:fadeUp .55s ease both;
+}
+.stat:last-child{border-right:none}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;
+  background:linear-gradient(135deg,var(--sky-deep),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat-label{color:var(--muted);font-size:.85rem;margin-top:.2rem;font-weight:500}
+
+/* ══════════ MARQUEE ══════════ */
+.marquee-wrap{
+  overflow:hidden;padding:1.3rem 0;
+  background:linear-gradient(135deg,var(--sky-deep) 0%,var(--sky) 55%,var(--teal) 100%);
+  position:relative;z-index:1;
+}
+.marquee-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:marquee 22s linear infinite;width:max-content;
+}
+.marquee-item{
+  color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600;
+  display:flex;align-items:center;gap:.55rem;letter-spacing:.04em;
+}
+.marquee-item .m-dot{color:rgba(255,255,255,.4);font-size:1rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══════════ SECTION BASE ══════════ */
+section{padding:5.5rem 6%;position:relative;z-index:1}
+
+.section-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  color:var(--sky-deep);font-size:.75rem;font-weight:800;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;
+}
+.section-tag::before{content:'';width:28px;height:2.5px;
+  background:linear-gradient(90deg,var(--sky-deep),var(--teal));border-radius:2px}
+
+h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.9rem,3.5vw,3rem);
+  font-weight:800;letter-spacing:-1px;line-height:1.1;color:var(--text);
+}
+.section-desc{color:var(--muted);max-width:540px;margin-top:.85rem;font-size:1.05rem}
+
+/* ══════════ SERVICES – MULTI-PAGE ══════════ */
+.services{background:var(--bg)}
+.services-header{margin-bottom:2.5rem}
+
+/* ── tab strip ── */
+.svc-tabs{
+  display:flex;align-items:center;gap:.75rem;
+  margin-bottom:2rem;flex-wrap:wrap;
+}
+.svc-tab{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.65rem 1.5rem;
+  background:#fff;border:2px solid var(--border);
+  border-radius:999px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-weight:600;
+  font-size:.88rem;color:var(--muted);
+  box-shadow:0 2px 10px var(--shadow);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.svc-tab::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--sky-deep),var(--sky));
+  opacity:0;transition:opacity .3s;
+}
+.svc-tab span,.svc-tab .ti{position:relative;z-index:1}
+.svc-tab.active,.svc-tab:hover{
+  color:#fff;border-color:transparent;
+  box-shadow:0 6px 22px rgba(14,165,233,.36);
+  transform:translateY(-2px);
+}
+.svc-tab.active::before,.svc-tab:hover::before{opacity:1}
+
+/* progress dots */
+.svc-dots{display:flex;gap:.5rem;align-items:center;margin-left:auto}
+.s-dot{
+  width:8px;height:8px;border-radius:999px;
+  background:var(--sky-pale);border:2px solid var(--sky);
+  transition:all .35s;cursor:pointer;
+}
+.s-dot.on{background:var(--sky);width:26px}
+
+/* ── page container ── */
+.svc-stage{
+  position:relative;min-height:500px;overflow:hidden;
+}
+
+.svc-page{display:none}
+.svc-page.active{display:block}
+
+/* animations injected via JS class */
+.pg-enter-right{animation:pgInR .4s cubic-bezier(.4,0,.2,1) both}
+.pg-enter-left {animation:pgInL .4s cubic-bezier(.4,0,.2,1) both}
+.pg-exit-left  {animation:pgOutL .3s cubic-bezier(.4,0,.2,1) both;position:absolute;inset:0}
+.pg-exit-right {animation:pgOutR .3s cubic-bezier(.4,0,.2,1) both;position:absolute;inset:0}
+
+@keyframes pgInR  {from{opacity:0;transform:translateX(52px)} to{opacity:1;transform:none}}
+@keyframes pgInL  {from{opacity:0;transform:translateX(-52px)}to{opacity:1;transform:none}}
+@keyframes pgOutL {from{opacity:1;transform:none}to{opacity:0;transform:translateX(-52px)}}
+@keyframes pgOutR {from{opacity:1;transform:none}to{opacity:0;transform:translateX( 52px)}}
+
+/* ── hero banner inside page ── */
+.pg-banner{
+  border-radius:20px;padding:2.2rem 2.6rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  margin-bottom:1.8rem;overflow:hidden;position:relative;
+}
+.pg-banner.b0{background:linear-gradient(135deg,#0369a1,var(--sky),var(--sky-mid))}
+.pg-banner.b1{background:linear-gradient(135deg,#075985,#0ea5e9,#38bdf8)}
+.pg-banner.b2{background:linear-gradient(135deg,#0e7490,#06b6d4,#67e8f9)}
+
+.pg-banner::before{
+  content:'';position:absolute;right:-70px;top:-70px;
+  width:260px;height:260px;border-radius:50%;
+  background:rgba(255,255,255,.06);pointer-events:none;
+}
+.pg-banner::after{
+  content:'';position:absolute;right:80px;bottom:-90px;
+  width:190px;height:190px;border-radius:50%;
+  background:rgba(255,255,255,.04);pointer-events:none;
+}
+.pg-banner-copy h3{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(1.35rem,3vw,2rem);color:#fff;
+  letter-spacing:-.4px;line-height:1.15;
+}
+.pg-banner-copy p{color:rgba(255,255,255,.72);font-size:.95rem;margin-top:.5rem;max-width:400px}
+.pg-banner-icon{
+  font-size:3.8rem;flex-shrink:0;position:relative;z-index:1;
+  animation:levitate 3.5s ease-in-out infinite alternate;
+}
+@keyframes levitate{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+
+/* ── card grid ── */
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(268px,1fr));
+  gap:1.2rem;
+}
+
+.svc-card{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:1.65rem;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;position:relative;overflow:hidden;
+  opacity:0;transform:translateY(18px);
+}
+.svc-card.appear{
+  animation:cardIn .42s ease forwards;
+}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+
+.svc-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(14,165,233,.05),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.svc-card:hover{
+  border-color:rgba(14,165,233,.38);
+  transform:translateY(-6px);
+  box-shadow:0 22px 52px rgba(14,165,233,.14);
+}
+.svc-card:hover::after{opacity:1}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.c-icon{
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(14,165,233,.12),rgba(6,182,212,.08));
+  border:1px solid rgba(14,165,233,.15);
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem;
+}
+.c-arrow{
+  width:30px;height:30px;border-radius:8px;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.85rem;font-weight:700;
+  transition:all .25s;flex-shrink:0;
+}
+.svc-card:hover .c-arrow{
+  background:var(--sky);color:#fff;border-color:var(--sky);
+  transform:translate(2px,-2px);
+}
+.c-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1rem;color:var(--text);margin-bottom:.4rem;
+}
+.c-desc{color:var(--muted);font-size:.875rem;line-height:1.65}
+
+.c-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.c-tag{
+  background:rgba(14,165,233,.08);color:var(--sky-deep);
+  font-size:.7rem;font-weight:700;padding:.18rem .6rem;
+  border-radius:999px;letter-spacing:.04em;
+  border:1px solid rgba(14,165,233,.14);
+}
+
+/* ── page bottom nav ── */
+.pg-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.8rem;padding-top:1.5rem;
+  border-top:1px solid var(--border);flex-wrap:wrap;gap:.75rem;
+}
+.pg-footer-label{color:var(--muted);font-size:.82rem;font-weight:600}
+
+.pg-btn{
+  display:flex;align-items:center;gap:.45rem;
+  padding:.62rem 1.3rem;border-radius:10px;
+  border:1.5px solid var(--border);background:#fff;
+  color:var(--muted);font-size:.875rem;font-weight:600;
+  cursor:pointer;transition:all .25s;font-family:'Outfit',sans-serif;
+}
+.pg-btn:hover{border-color:var(--sky);color:var(--sky-deep)}
+.pg-btn.next{
+  background:linear-gradient(135deg,var(--sky-deep),var(--sky));
+  color:#fff;border-color:transparent;
+  box-shadow:0 4px 16px rgba(14,165,233,.3);
+}
+.pg-btn.next:hover{transform:translateX(3px)}
+
+/* ══════════ WHY US ══════════ */
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+
+.why-items{display:flex;flex-direction:column;gap:1rem}
+.why-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.2rem 1.4rem;border-radius:14px;
+  border:1.5px solid transparent;transition:all .3s;opacity:0;
+}
+.why-item.vis{animation:fadeUp .5s ease both;opacity:1}
+.why-item:hover{background:var(--bg2);border-color:var(--border);box-shadow:0 4px 18px var(--shadow)}
+
+.w-icon{
+  width:42px;height:42px;min-width:42px;border-radius:11px;
+  background:linear-gradient(135deg,rgba(14,165,233,.14),rgba(6,182,212,.08));
+  border:1px solid rgba(14,165,233,.18);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.w-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.25rem}
+.w-desc{color:var(--muted);font-size:.875rem}
+
+.why-visual{
+  position:relative;aspect-ratio:1;
+  background:linear-gradient(145deg,var(--bg2),#fff);
+  border-radius:28px;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  box-shadow:0 18px 60px var(--shadow);
+}
+.why-visual::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(14,165,233,.11),transparent 65%);
+  animation:breathe 4s ease-in-out infinite alternate;
+}
+@keyframes breathe{from{opacity:.5}to{opacity:1}}
+
+.v-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ring{
+  position:absolute;border-radius:50%;
+  animation:spinRing linear infinite;
+}
+.ring:nth-child(1){width:80%;height:80%;border:1.5px solid rgba(14,165,233,.18);animation-duration:22s}
+.ring:nth-child(2){width:60%;height:60%;border:1.5px solid rgba(56,189,248,.24);animation-duration:16s;animation-direction:reverse}
+.ring:nth-child(3){width:40%;height:40%;border:1.5px solid rgba(6,182,212,.3);animation-duration:11s}
+@keyframes spinRing{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.v-core{
+  position:relative;z-index:2;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
+  text-align:center;line-height:1.4;
+  background:linear-gradient(135deg,var(--sky-deep),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* ══════════ PROCESS ══════════ */
+.process{background:var(--bg)}
+.process-steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+  gap:1.5rem;margin-top:3.5rem;position:relative;
+}
+.process-steps::before{
+  content:'';position:absolute;top:27px;left:5%;right:5%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--sky),transparent);
+  opacity:.22;
+}
+.step{text-align:center;padding:2rem 1.2rem;opacity:0}
+.step.vis{animation:fadeUp .5s ease both;opacity:1}
+.step-num{
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,var(--sky-deep),var(--sky));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#fff;
+  margin:0 auto 1.3rem;box-shadow:0 6px 24px rgba(14,165,233,.32);
+  position:relative;z-index:1;
+}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.step-desc{color:var(--muted);font-size:.875rem}
+
+/* ══════════ CONTACT ══════════ */
+.contact{background:#fff}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1.3fr;
+  gap:4rem;align-items:start;margin-top:3rem;
+}
+
+.contact-info{display:flex;flex-direction:column;gap:1.1rem}
+.c-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.2rem 1.4rem;background:var(--bg2);
+  border-radius:14px;border:1.5px solid var(--border);
+  transition:all .3s;
+}
+.c-item:hover{border-color:rgba(14,165,233,.36);box-shadow:0 6px 20px var(--shadow);transform:translateX(4px)}
+.ci-icon{
+  width:38px;height:38px;min-width:38px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(14,165,233,.14),rgba(6,182,212,.08));
+  border:1px solid rgba(14,165,233,.18);
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.ci-label{font-weight:700;font-size:.72rem;color:var(--muted);margin-bottom:.2rem;letter-spacing:.06em;text-transform:uppercase}
+.ci-value{color:var(--text);font-size:.95rem;font-weight:500}
+.ci-value a{color:var(--sky-deep);text-decoration:none;font-weight:600}
+
+/* WhatsApp CTA */
+.wa-block{margin-top:.4rem}
+.wa-btn{
+  display:flex;align-items:center;gap:.75rem;
+  background:linear-gradient(135deg,#128c7e,#25d366);
+  color:#fff;padding:1rem 1.6rem;border-radius:14px;
+  text-decoration:none;font-weight:700;font-size:1rem;
+  box-shadow:0 6px 24px rgba(37,211,102,.28);
+  transition:all .3s;
+}
+.wa-btn svg{width:22px;height:22px;flex-shrink:0}
+.wa-btn:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,211,102,.42)}
+.wa-note{
+  display:flex;align-items:center;gap:.45rem;
+  margin-top:.6rem;color:#25d366;font-size:.8rem;font-weight:600;
+}
+.wa-note::before{content:'';width:8px;height:8px;border-radius:50%;background:#25d366;animation:blink 2s infinite}
+
+/* ── Form ── */
+.c-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.inp-group{display:flex;flex-direction:column;gap:.42rem}
+.inp-group label{font-size:.77rem;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.inp-group input,.inp-group textarea,.inp-group select{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:11px;padding:.8rem 1.1rem;
+  color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;
+  outline:none;transition:all .25s;resize:vertical;
+}
+.inp-group input:focus,.inp-group textarea:focus,.inp-group select:focus{
+  border-color:var(--sky);background:#fff;
+  box-shadow:0 0 0 4px rgba(14,165,233,.1);
+}
+.inp-group select option{background:#fff}
+.inp-group textarea{min-height:120px}
+
+/* ══════════ FOOTER ══════════ */
+footer{
+  background:var(--text);
+  border-top:1px solid rgba(14,165,233,.12);
+  padding:3.5rem 6% 2rem;z-index:1;position:relative;
+}
+.footer-top{
+  display:flex;justify-content:space-between;flex-wrap:wrap;
+  gap:2rem;padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:2rem;
+}
+.footer-brand{max-width:280px}
+.f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--sky-mid)}
+.f-logo em{font-style:normal;color:#67e8f9}
+.f-desc{color:rgba(255,255,255,.38);font-size:.9rem;margin-top:.8rem;line-height:1.7}
+
+.footer-links{display:flex;gap:3.5rem;flex-wrap:wrap}
+.f-col h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:1rem;
+}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.f-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.875rem;transition:color .25s}
+.f-col a:hover{color:var(--sky-mid)}
+
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+  color:rgba(255,255,255,.22);font-size:.8rem;
+}
+
+/* ══════════ REVEAL ══════════ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .why-grid,.contact-inner{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .why-visual{display:none}
+  .stats-bar{flex-direction:column}
+  .stat{border-right:none;border-bottom:1px solid var(--border)}
+  .footer-top{flex-direction:column}
+  .footer-links{flex-direction:column;gap:1.5rem}
+  .pg-banner{flex-direction:column;text-align:center}
+  .svc-dots{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Zee<em>soft</em></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollToSection('contact')">Get in Touch</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-badge"><span class="badge-dot"></span>🇵🇰 Based in Lahore, Pakistan</div>
+  <h1>We Build<br/><span class="grad">Digital Products</span><br/>That Matter</h1>
+  <p class="hero-sub">Zeesoft is an IT & software development company specialising in mobile apps, web development, and digital growth — crafted for the modern world.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="scrollToSection('services')">Explore Services</button>
+    <button class="btn-ghost"   onclick="scrollToSection('contact')">Contact Us →</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat" style="animation-delay:.1s"><div class="stat-num">80+</div><div class="stat-label">Projects Delivered</div></div>
+  <div class="stat" style="animation-delay:.2s"><div class="stat-num">5+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat" style="animation-delay:.3s"><div class="stat-num">98%</div><div class="stat-label">Client Satisfaction</div></div>
+  <div class="stat" style="animation-delay:.4s"><div class="stat-num">3</div><div class="stat-label">Core Service Lines</div></div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="m-dot">✦</span>Android Development</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>iOS Apps</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>SaaS Platforms</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>UI/UX Design</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>App Store Optimization</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>E-commerce</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>Graphic Design</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>IT Consulting</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>Backend APIs</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>MVP Development</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>Android Development</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>iOS Apps</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>SaaS Platforms</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>UI/UX Design</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>App Store Optimization</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>E-commerce</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>Graphic Design</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>IT Consulting</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>Backend APIs</span>
+    <span class="marquee-item"><span class="m-dot">✦</span>MVP Development</span>
+  </div>
+</div>
+
+<!-- ████████ SERVICES MULTI-PAGE ████████ -->
+<section class="services" id="services">
+
+  <div class="services-header reveal">
+    <div class="section-tag">Core Services</div>
+    <h2>Everything You Need to<br/>Build &amp; Grow Digitally</h2>
+    <p class="section-desc">Explore each service line — use the tabs or arrows to navigate.</p>
+  </div>
+
+  <!-- Tab bar -->
+  <div class="svc-tabs">
+    <button class="svc-tab active" data-pg="0" onclick="goPage(0,this)"><span>📱</span><span>Mobile Development</span></button>
+    <button class="svc-tab"        data-pg="1" onclick="goPage(1,this)"><span>🌐</span><span>Web Development</span></button>
+    <button class="svc-tab"        data-pg="2" onclick="goPage(2,this)"><span>🚀</span><span>Apps Growth</span></button>
+    <div class="svc-dots">
+      <div class="s-dot on"  onclick="goPage(0,document.querySelectorAll('.svc-tab')[0])"></div>
+      <div class="s-dot"     onclick="goPage(1,document.querySelectorAll('.svc-tab')[1])"></div>
+      <div class="s-dot"     onclick="goPage(2,document.querySelectorAll('.svc-tab')[2])"></div>
+    </div>
+  </div>
+
+  <div class="svc-stage">
+
+    <!-- PAGE 0 – MOBILE -->
+    <div class="svc-page active" id="pg0">
+      <div class="pg-banner b0">
+        <div class="pg-banner-copy">
+          <h3>Mobile Development</h3>
+          <p>Native Android &amp; iOS, cross-platform solutions, and lean MVPs built to perform and scale.</p>
+        </div>
+        <div class="pg-banner-icon">📱</div>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🤖</div><div class="c-arrow">↗</div></div><div class="c-title">Android App Development</div><div class="c-desc">Native Android apps built with Kotlin/Java, optimised for performance and the Play Store.</div><div class="c-tags"><span class="c-tag">Kotlin</span><span class="c-tag">Java</span><span class="c-tag">Play Store</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🍎</div><div class="c-arrow">↗</div></div><div class="c-title">iOS App Development</div><div class="c-desc">Sleek, Swift-powered apps for iPhone and iPad that delight users from first launch.</div><div class="c-tags"><span class="c-tag">Swift</span><span class="c-tag">SwiftUI</span><span class="c-tag">App Store</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">⚡</div><div class="c-arrow">↗</div></div><div class="c-title">Cross-Platform Apps</div><div class="c-desc">One codebase for iOS &amp; Android using Flutter or React Native — faster delivery, lower cost.</div><div class="c-tags"><span class="c-tag">Flutter</span><span class="c-tag">React Native</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🛠️</div><div class="c-arrow">↗</div></div><div class="c-title">MVP Development</div><div class="c-desc">Validate your idea fast. We build lean, launch-ready MVPs that attract early users and investors.</div><div class="c-tags"><span class="c-tag">Rapid Build</span><span class="c-tag">Lean</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🎨</div><div class="c-arrow">↗</div></div><div class="c-title">App Redesign</div><div class="c-desc">Breathe new life into aging apps with modern UI/UX, better flows, and improved retention.</div><div class="c-tags"><span class="c-tag">UI/UX</span><span class="c-tag">Figma</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">⚙️</div><div class="c-arrow">↗</div></div><div class="c-title">App Optimisation</div><div class="c-desc">Speed, stability, and size. We fine-tune your app for peak performance on every device.</div><div class="c-tags"><span class="c-tag">Performance</span><span class="c-tag">QA</span></div></div>
+      </div>
+      <div class="pg-footer">
+        <span class="pg-footer-label">Page 1 of 3 · Mobile Development</span>
+        <button class="pg-btn next" onclick="goPage(1,document.querySelectorAll('.svc-tab')[1])">Web Development →</button>
+      </div>
+    </div>
+
+    <!-- PAGE 1 – WEB -->
+    <div class="svc-page" id="pg1">
+      <div class="pg-banner b1">
+        <div class="pg-banner-copy">
+          <h3>Web Development</h3>
+          <p>From company sites to full SaaS platforms, dashboards &amp; e-commerce — built to convert and scale.</p>
+        </div>
+        <div class="pg-banner-icon">🌐</div>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🏢</div><div class="c-arrow">↗</div></div><div class="c-title">Company Websites</div><div class="c-desc">Professional, brand-aligned websites that convert visitors into leads and partners.</div><div class="c-tags"><span class="c-tag">React</span><span class="c-tag">Next.js</span><span class="c-tag">SEO</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">☁️</div><div class="c-arrow">↗</div></div><div class="c-title">SaaS Platforms</div><div class="c-desc">Scalable, multi-tenant SaaS products built for growth, subscriptions, and global teams.</div><div class="c-tags"><span class="c-tag">Multi-tenant</span><span class="c-tag">Subscriptions</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">📊</div><div class="c-arrow">↗</div></div><div class="c-title">Admin Dashboards</div><div class="c-desc">Data-rich, intuitive dashboards that give your team full control and clear visibility.</div><div class="c-tags"><span class="c-tag">Analytics</span><span class="c-tag">Charts</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">💻</div><div class="c-arrow">↗</div></div><div class="c-title">Web Applications</div><div class="c-desc">Complex, interactive web apps with real-time features and robust architecture.</div><div class="c-tags"><span class="c-tag">Real-time</span><span class="c-tag">WebSockets</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🛒</div><div class="c-arrow">↗</div></div><div class="c-title">E-Commerce Websites</div><div class="c-desc">High-converting online stores with smooth checkout, inventory management, and payments.</div><div class="c-tags"><span class="c-tag">Stripe</span><span class="c-tag">Shopify</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🔌</div><div class="c-arrow">↗</div></div><div class="c-title">Backend APIs</div><div class="c-desc">RESTful and GraphQL APIs built for speed, security, and seamless third-party integrations.</div><div class="c-tags"><span class="c-tag">REST</span><span class="c-tag">GraphQL</span><span class="c-tag">Node.js</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">📝</div><div class="c-arrow">↗</div></div><div class="c-title">CMS Systems</div><div class="c-desc">Content management solutions that empower your team to publish without touching code.</div><div class="c-tags"><span class="c-tag">Headless CMS</span><span class="c-tag">WordPress</span></div></div>
+      </div>
+      <div class="pg-footer">
+        <button class="pg-btn" onclick="goPage(0,document.querySelectorAll('.svc-tab')[0])">← Mobile Development</button>
+        <span class="pg-footer-label">Page 2 of 3 · Web Development</span>
+        <button class="pg-btn next" onclick="goPage(2,document.querySelectorAll('.svc-tab')[2])">Apps Growth →</button>
+      </div>
+    </div>
+
+    <!-- PAGE 2 – GROWTH -->
+    <div class="svc-page" id="pg2">
+      <div class="pg-banner b2">
+        <div class="pg-banner-copy">
+          <h3>Mobile Apps Growth</h3>
+          <p>ASO, retention, analytics, and revenue optimisation to turn your app into a growth machine.</p>
+        </div>
+        <div class="pg-banner-icon">🚀</div>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🏆</div><div class="c-arrow">↗</div></div><div class="c-title">App Store Optimisation</div><div class="c-desc">Rank higher, get discovered faster, and drive organic installs through smart ASO.</div><div class="c-tags"><span class="c-tag">Keywords</span><span class="c-tag">Ratings</span><span class="c-tag">Organic</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🔥</div><div class="c-arrow">↗</div></div><div class="c-title">Performance Optimisation</div><div class="c-desc">Reduce load times, fix bottlenecks, and keep users in a smooth crash-free experience.</div><div class="c-tags"><span class="c-tag">Speed</span><span class="c-tag">Crash-free</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🔁</div><div class="c-arrow">↗</div></div><div class="c-title">User Retention Strategies</div><div class="c-desc">Data-driven onboarding flows and engagement loops that bring users back again and again.</div><div class="c-tags"><span class="c-tag">Onboarding</span><span class="c-tag">Engagement</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🔔</div><div class="c-arrow">↗</div></div><div class="c-title">Push Notification Strategy</div><div class="c-desc">Smart notification campaigns timed and personalised to re-engage your user base.</div><div class="c-tags"><span class="c-tag">Personalised</span><span class="c-tag">Automated</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">📈</div><div class="c-arrow">↗</div></div><div class="c-title">Analytics Integration</div><div class="c-desc">Firebase, Mixpanel, Amplitude — we wire up the data pipeline so you see everything clearly.</div><div class="c-tags"><span class="c-tag">Firebase</span><span class="c-tag">Mixpanel</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">💡</div><div class="c-arrow">↗</div></div><div class="c-title">Conversion Optimisation</div><div class="c-desc">A/B testing, funnel analysis, and UX tweaks that turn browsers into paying customers.</div><div class="c-tags"><span class="c-tag">A/B Testing</span><span class="c-tag">Funnels</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">🐛</div><div class="c-arrow">↗</div></div><div class="c-title">Crash &amp; Performance Monitoring</div><div class="c-desc">Real-time alerts and diagnostics so you catch and fix issues before users ever notice.</div><div class="c-tags"><span class="c-tag">Sentry</span><span class="c-tag">Real-time</span></div></div>
+        <div class="svc-card"><div class="card-top"><div class="c-icon">💰</div><div class="c-arrow">↗</div></div><div class="c-title">Subscription Revenue Optimisation</div><div class="c-desc">Paywall testing, pricing strategy, and churn reduction to maximise your recurring revenue.</div><div class="c-tags"><span class="c-tag">Paywall</span><span class="c-tag">Churn</span><span class="c-tag">MRR</span></div></div>
+      </div>
+      <div class="pg-footer">
+        <button class="pg-btn" onclick="goPage(1,document.querySelectorAll('.svc-tab')[1])">← Web Development</button>
+        <span class="pg-footer-label">Page 3 of 3 · Apps Growth</span>
+        <button class="pg-btn next" onclick="scrollToSection('contact')">Get a Quote →</button>
+      </div>
+    </div>
+
+  </div><!-- /svc-stage -->
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag reveal">Why Zeesoft</div>
+      <h2 class="reveal">Built Different,<br/>Delivered Better</h2>
+      <p class="section-desc reveal">We combine technical depth with creative execution to ship products that stand out — on time and on budget.</p>
+      <div class="why-items" style="margin-top:2rem">
+        <div class="why-item"><div class="w-icon">🎯</div><div><div class="w-title">Goal-First Approach</div><div class="w-desc">Every decision is tied to your business outcomes, not just technical deliverables.</div></div></div>
+        <div class="why-item"><div class="w-icon">🔒</div><div><div class="w-title">Transparent Communication</div><div class="w-desc">Weekly updates, live Figma files, and an open Slack channel — you're always in the loop.</div></div></div>
+        <div class="why-item"><div class="w-icon">⚡</div><div><div class="w-title">Fast Turnaround</div><div class="w-desc">Agile sprints and a senior team that moves fast without sacrificing quality.</div></div></div>
+        <div class="why-item"><div class="w-icon">🌍</div><div><div class="w-title">Pakistan-Based, Global Standards</div><div class="w-desc">Enterprise-grade quality at competitive rates — the best of both worlds.</div></div></div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="v-rings"><div class="ring"></div><div class="ring"></div><div class="ring"></div></div>
+      <div class="v-core">Zeesoft<br/><span style="font-size:.68rem;color:var(--muted);font-family:'Outfit',sans-serif;font-weight:400">Lahore · Pakistan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="reveal" style="text-align:center">
+    <div class="section-tag" style="justify-content:center">How We Work</div>
+    <h2>Our Proven Process</h2>
+    <p class="section-desc" style="margin:0 auto">From first call to final launch — here's exactly how we make things happen.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Discovery</div><div class="step-desc">We dig into your goals, users, and competition to define the right scope.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Design</div><div class="step-desc">Wireframes and high-fidelity mockups reviewed before a single line of code.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Develop</div><div class="step-desc">Agile sprints with bi-weekly demos so you see progress continuously.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Test</div><div class="step-desc">Rigorous QA across devices, edge cases, and real-world load scenarios.</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-title">Launch</div><div class="step-desc">Smooth deployment with post-launch monitoring and rapid response support.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-tag">Get in Touch</div>
+    <h2>Let's Build Something<br/>Great Together</h2>
+    <p class="section-desc">Have a project in mind? Reach out and we'll get back within 24 hours.</p>
+  </div>
+  <div class="contact-inner">
+
+    <div class="contact-info reveal">
+      <div class="c-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Office Address</div>
+          <div class="ci-value">H Block, Sukh Chayn Gardens,<br/>Lahore, Punjab, Pakistan</div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Phone</div>
+          <div class="ci-value"><a href="tel:+923358648130">+92 335 8648130</a></div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="ci-icon">🕐</div>
+        <div>
+          <div class="ci-label">Working Hours</div>
+          <div class="ci-value">Mon – Sat, 9:00 AM – 6:00 PM PKT</div>
+        </div>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="wa-block">
+        <a href="https://wa.me/923358648130" target="_blank" rel="noopener" class="wa-btn">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fff" d="M16 3C8.82 3 3 8.82 3 16c0 2.3.62 4.52 1.8 6.48L3 29l6.7-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.8c-2 0-3.96-.54-5.66-1.56l-.4-.24-4 1.05 1.06-3.88-.26-.42A10.8 10.8 0 0 1 5.2 16C5.2 10.04 10.04 5.2 16 5.2 21.96 5.2 26.8 10.04 26.8 16S21.96 26.8 16 26.8zm5.92-8.08c-.32-.16-1.9-.94-2.2-1.04-.3-.12-.5-.16-.72.16s-.82 1.04-1.02 1.26c-.18.2-.36.22-.68.06a8.6 8.6 0 0 1-2.52-1.56 9.48 9.48 0 0 1-1.74-2.18c-.18-.32 0-.5.14-.66.12-.14.3-.36.44-.54.14-.18.18-.3.28-.52.1-.2.04-.4-.02-.56-.06-.16-.72-1.74-.98-2.38-.26-.62-.52-.54-.72-.54h-.6c-.2 0-.54.08-.82.38-.28.3-1.08 1.06-1.08 2.58 0 1.52 1.1 2.98 1.26 3.18.16.2 2.18 3.32 5.28 4.66.74.32 1.32.5 1.76.64.74.24 1.42.2 1.94.12.6-.08 1.9-.78 2.16-1.52.28-.74.28-1.38.2-1.52-.08-.16-.28-.22-.6-.38z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+        <div class="wa-note">Usually replies within minutes</div>
+      </div>
+    </div>
+
+    <div class="c-form reveal">
+      <div class="form-row">
+        <div class="inp-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe"/>
+        </div>
+        <div class="inp-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+1 555 000 0000"/>
+        </div>
+      </div>
+      <div class="inp-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service…</option>
+          <optgroup label="Mobile Development">
+            <option>Android App Development</option>
+            <option>iOS App Development</option>
+            <option>Cross-Platform Apps</option>
+            <option>MVP Development</option>
+            <option>App Redesign</option>
+            <option>App Optimisation</option>
+          </optgroup>
+          <optgroup label="Web Development">
+            <option>Company Website</option>
+            <option>SaaS Platform</option>
+            <option>Admin Dashboard</option>
+            <option>Web App</option>
+            <option>E-Commerce Website</option>
+            <option>Backend API</option>
+            <option>CMS System</option>
+          </optgroup>
+          <optgroup label="Mobile Apps Growth">
+            <option>ASO</option>
+            <option>App Performance Optimisation</option>
+            <option>User Retention Strategy</option>
+            <option>Analytics Integration</option>
+            <option>Conversion Optimisation</option>
+            <option>Subscription Revenue Optimisation</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="inp-group">
+        <label>Tell Us About Your Project</label>
+        <textarea placeholder="Describe your idea, goals, or any details that help us understand your needs…"></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;border-radius:12px" onclick="handleSend(this)">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="f-logo">Zee<em>soft</em></div>
+      <p class="f-desc">Zeesoft (Private Limited) — an IT &amp; software development company based in Lahore, Pakistan. Building digital products that matter since day one.</p>
+    </div>
+    <div class="footer-links">
+      <div class="f-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services" onclick="goPage(0,document.querySelectorAll('.svc-tab')[0])">Mobile Development</a></li>
+          <li><a href="#services" onclick="goPage(1,document.querySelectorAll('.svc-tab')[1])">Web Development</a></li>
+          <li><a href="#services" onclick="goPage(2,document.querySelectorAll('.svc-tab')[2])">Apps Growth</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">About Us</a></li>
+          <li><a href="#process">How We Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+923358648130">+92 335 8648130</a></li>
+          <li><a href="https://wa.me/923358648130" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Zeesoft (Private Limited). All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+/* ── smooth scroll helper ── */
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+/* ══════════════════════════════════════
+   MULTI-PAGE SERVICE SWITCHER
+══════════════════════════════════════ */
+let cur = 0;
+let busy = false;
+
+function goPage(next, tabBtn){
+  if(busy || next === cur) return;
+  busy = true;
+
+  const pages = document.querySelectorAll('.svc-page');
+  const tabs  = document.querySelectorAll('.svc-tab');
+  const dots  = document.querySelectorAll('.s-dot');
+  const goRight = next > cur;
+
+  /* EXIT current page */
+  const outEl = pages[cur];
+  outEl.classList.add(goRight ? 'pg-exit-left' : 'pg-exit-right');
+
+  setTimeout(()=>{
+    outEl.classList.remove('active','pg-exit-left','pg-exit-right');
+
+    /* ENTER next page */
+    cur = next;
+    const inEl = pages[cur];
+    inEl.classList.add('active', goRight ? 'pg-enter-right' : 'pg-enter-left');
+
+    /* stagger cards */
+    inEl.querySelectorAll('.svc-card').forEach((c,i)=>{
+      c.classList.remove('appear');
+      c.style.animationDelay = '';
+      void c.offsetWidth; // reflow
+      c.style.animationDelay = (i * .055) + 's';
+      c.classList.add('appear');
+    });
+
+    setTimeout(()=>{
+      inEl.classList.remove('pg-enter-right','pg-enter-left');
+      busy = false;
+    }, 420);
+
+  }, 300);
+
+  /* update tabs & dots */
+  tabs.forEach(t => t.classList.remove('active'));
+  tabBtn.classList.add('active');
+  dots.forEach((d,i)=>{ d.classList.toggle('on', i===next); });
+}
+
+/* kick off card animations on first visible page */
+window.addEventListener('load',()=>{
+  document.querySelectorAll('#pg0 .svc-card').forEach((c,i)=>{
+    c.style.animationDelay = (i * .055) + 's';
+    c.classList.add('appear');
+  });
+});
+
+/* ══════════ SCROLL REVEAL ══════════ */
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in') });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ══════════ WHY ITEMS STAGGER ══════════ */
+const whyObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.why-item').forEach((it,i)=>{
+        setTimeout(()=>it.classList.add('vis'), i*130);
+      });
+      whyObs.disconnect();
+    }
+  });
+},{threshold:.2});
+const whySec = document.querySelector('.why');
+if(whySec) whyObs.observe(whySec);
+
+/* ══════════ PROCESS STEPS STAGGER ══════════ */
+const stepObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.step').forEach((s,i)=>{
+        setTimeout(()=>s.classList.add('vis'), i*120);
+      });
+      stepObs.disconnect();
+    }
+  });
+},{threshold:.2});
+const procSec = document.querySelector('.process');
+if(procSec) stepObs.observe(procSec);
+
+/* ══════════ NAV ACTIVE STATE ══════════ */
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY + 90;
+  document.querySelectorAll('section[id]').forEach(s=>{
+    const lnk = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+    if(!lnk) return;
+    lnk.style.color = (s.offsetTop <= y && s.offsetTop + s.offsetHeight > y)
+      ? 'var(--sky-deep)' : '';
+  });
+},{passive:true});
+
+/* ══════════ SUBMIT ══════════ */
+function handleSend(btn){
+  btn.textContent = '✓ Sent! We\'ll be in touch.';
+  btn.style.background = 'linear-gradient(135deg,#0891b2,#06b6d4)';
+  setTimeout(()=>{
+    btn.textContent = 'Send Message →';
+    btn.style.background = '';
+  }, 3000);
+}
+</script>
+</body>
+</html>
